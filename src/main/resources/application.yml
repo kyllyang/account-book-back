@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.2.8.11:3306/account-book?useUnicode=true&characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true
+    username: ENC(dpN+6CdwGHih35I5PYiqWi3mjViBlb7LEFg718/zrPJmfMRpCVCf8gGhYVcRim2c)
+    password: ENC(7Sby+upVFrj1TfADEHyu8lTLLGoy7uIkZVrZHHGVCN5YQzwtz0kJqc4ZDrM4LbLT2rDsqH3kXiDg+B6XNuMitA==)
+    hikari:
+      maximum-pool-size: 10 # 固定大小
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+springdoc:
+  api-docs:
+    enabled: false

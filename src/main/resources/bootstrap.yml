@@ -1,0 +1,30 @@
+server:
+  port: 20001
+spring:
+  application:
+    name: account-book
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: sit
+---
+spring:
+  config:
+    activate:
+      on-profile: uat
+---
+spring:
+  config:
+    activate:
+      on-profile: prod

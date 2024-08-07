@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+	<property name="log_file" value="logs/${springAppName}"/>
+	<property name="log_file_pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID} --- [%t] %logger.%M %L : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+	<contextName>${springAppName}</contextName>
+
+	<appender name="ROLLINGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log_file}.log</File>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${log_file}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>${log_file_pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="xyz.ksevo" level="DEBUG" additivity="false">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="ROLLINGFILE"/>
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="ROLLINGFILE"/>
+	</root>
+
+</configuration>
